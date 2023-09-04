@@ -47,11 +47,11 @@ excercise6();
 // and returns a new array with the results of function called on each element of the array (function passed as a first parameter)
 function excercise7() {
     // TODO: add type annotations
-    function map(arr, fn) {
-        // TODO: add logic here
-        // TODO: use regular for loop
-        return [];
-    }
+    // function map(arr, fn) {
+    // TODO: add logic here
+    // TODO: use regular for loop
+    // return [];
+    // }
     // TODO: create an array of numbers
     // TODO: create a function which doubles a number
     // TODO: call map function (created earlier) with the array and the function
@@ -88,7 +88,7 @@ function excercise9() {
     // TODO: try to access the year property from outside of the class - observe the error
     // TODO: change protected modifier to the year property, remove private modifier
     // TODO: create a subclass `Magazine` which extends `Book` class
-    // TODO: add a new properties `month` and `day` to the `Magazine` class
+    // TODO: add a new properties `month` and `day` to the `Magazine` class (no need to validate month and day)
     // TODO: add constructor override to the Magazine class which takes four parameters - title, year, month and day
     // TODO: use super keyword to call the `Book` class constructor with title and year parameters
     // TODO: add a method override `getInfo` to the `Magazine` class which prints the magazine info to console
@@ -98,22 +98,3 @@ function excercise9() {
 }
 // TODO: compile and run the code
 excercise9();
-// try different target compiler options
-function excercise10() {
-    // TODO: declare a Rectangle class, with width and height properties
-    // TODO: add a constructor which takes width and height as parameters
-    // TODO: add a method `getArea` which returns the area of the rectangle
-    // TODO: add a method `getPerimeter` which returns the perimeter of the rectangle
-    // TODO: create an instance of the Rectangle class, with width 10 and height 20
-    // TODO: call the method `getArea` and print the result to console
-    // TODO: call the method `getPerimeter` and print the result to console
-    // TODO: compile and run the code
-    // TODO: change compiler target to ES5, complile and see the compiled code
-    // TODO: change width and height properties to private, recomplile and
-    // TODO: change compiler target to ES2015, complile and see the compiled code
-    // TODO: change width and height properties to be prefixed with #, to use ESNext private fields support
-    // TODO: change compiler target to ESNext, complile and see the compiled code
-    // TODO: change compiler target to ES5, try to compile, check if you get the error Private identifiers are only available when targeting ECMAScript 2015 and higher.(18028)
-}
-// TODO: compile and run the code
-excercise10();

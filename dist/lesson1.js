@@ -28,7 +28,7 @@ function example1() {
     let firstName = "John";
     let nothing = null;
     let notDefined = undefined;
-    let largeNUmber = 100n;
+    // let largeNUmber: bigint = 100n;
     let id = Symbol("id");
     let id2 = Symbol("id");
 }
@@ -41,9 +41,7 @@ function example2() {
     let regExp = /ab+c/;
     let set = new Set([1, 2, 3, 3, 2, 1]);
     class Queue {
-        constructor() {
-            this.data = [];
-        }
+        data = [];
         push(item) {
             this.data.push(item);
         }
