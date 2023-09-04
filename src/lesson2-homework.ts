@@ -97,7 +97,7 @@ function excercise9() {
   // TODO: try to access the year property from outside of the class - observe the error
   // TODO: change protected modifier to the year property, remove private modifier
   // TODO: create a subclass `Magazine` which extends `Book` class
-  // TODO: add a new properties `month` and `day` to the `Magazine` class
+  // TODO: add a new properties `month` and `day` to the `Magazine` class (no need to validate month and day)
   // TODO: add constructor override to the Magazine class which takes four parameters - title, year, month and day
   // TODO: use super keyword to call the `Book` class constructor with title and year parameters
   // TODO: add a method override `getInfo` to the `Magazine` class which prints the magazine info to console

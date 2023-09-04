@@ -65,6 +65,7 @@ function printPoint(point: TPoint2D) {
   console.log(`Point: ${point.x.toFixed(2)}, ${point.y.toFixed(2)}`);
 }
 printPoint(point2D);
+printPoint({ x: 1, y: 2 });
 printPoint(point3D2);
 
 let user1 = { name: "John", age: 23 };
@@ -99,6 +100,9 @@ class Point {
     this.x = x; // this - instance of the class
     this.y = y;
   }
+
+  // constructor(protected x: number, protected y: number) {
+  // }
 
   protected logAction(str: string) {
     console.log(str, this);
