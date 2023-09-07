@@ -1,7 +1,7 @@
 // ********* Lesson 4 *********
 
 // Readonly modifier
-function lessonReadonlyModifier() {
+function readonlyModifier() {
   type Person = {
     name: string;
     age: number;
@@ -29,7 +29,7 @@ function lessonReadonlyModifier() {
 }
 
 // Optional modifier
-function lessonOptionalModifier() {
+function optionalModifier() {
   type Person = {
     name: string;
     age: number;
@@ -53,10 +53,10 @@ function lessonOptionalModifier() {
   const point = new Point();
   // point.x = null; // null is not optional type member
 }
-lessonOptionalModifier();
+optionalModifier();
 
 // Union Types
-function lessonUnionTypes() {
+function unionTypes() {
   function formatCommandLine(command: unknown) {
     if (typeof command === "string") {
       return command.trim();
@@ -131,7 +131,7 @@ function lessonUnionTypes() {
 }
 
 // Literal Types
-function lessonLiteralTypes() {
+function literalTypes() {
   // typescript allows to use any string as a type literal
   // type literals are used to restrict the values of the variable
   // example
@@ -192,10 +192,10 @@ function lessonLiteralTypes() {
   printRating(5); // ⭐⭐⭐⭐⭐
   // printRating(6); // error
 }
-lessonLiteralTypes();
+literalTypes();
 
 // Intersection types
-function lessonIntersectionTypes() {
+function intersectionTypes() {
   // type Point
   type TPoint = {
     x: number;
@@ -261,10 +261,10 @@ function lessonIntersectionTypes() {
     phone: "123-456-7890", // if omitted, will trigger compile time error
   });
 }
-lessonIntersectionTypes();
+intersectionTypes();
 
 // async/await
-function lessonAssyncAwait() {
+function assyncAwait() {
   // async await is a syntactic sugar for promises
   // - is used to write asynchronous code in synchronous style
   // - is used to avoid callback hell
@@ -331,4 +331,4 @@ function lessonAssyncAwait() {
 
   calculateLargeSumAsync().then((sum) => console.log(sum)); //
 }
-lessonAssyncAwait();
+assyncAwait();
