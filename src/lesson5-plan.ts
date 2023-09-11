@@ -1,5 +1,34 @@
 // ********* Lesson 5 *********
 
+// Q/A
+// settimeout with 0 - https://javascript.info/settimeout-setinterval
+function Q1() {
+  setTimeout(() => console.log("1"), 1);
+  setTimeout(() => {
+    setTimeout(() => console.log("4"), 1);
+    setTimeout(() => console.log("5"), 1);
+    setTimeout(() => console.log("0"));
+    setTimeout(() => console.log("0"));
+    setTimeout(() => console.log("0"));
+  }, 1);
+  setTimeout(() => console.log("2"), 1);
+  setTimeout(() => console.log("3"), 1);
+}
+// return type generic - https://www.typescriptlang.org/docs/handbook/generics.html#generic-type-variables
+function Q2() {
+  function formatCommandLineV2(command: string): string;
+  function formatCommandLineV2(command: string[]): string[];
+  function formatCommandLineV2(command: string | string[]): string | string[] {
+    if (typeof command === "string") {
+      return command.trim();
+    }
+    // it must be an array if it is not a string
+    return command.map((arg) => arg.trim()).join(" ");
+  }
+  let a = formatCommandLineV2("  git status  ");
+  let b = formatCommandLineV2(["  git", "status  "]);
+}
+
 // Type Narrowing
 function typeNarrowing() {
   function repeat(value: string | number, times: number): string | number {
@@ -331,7 +360,15 @@ function implementsKeyword() {
     age: number;
   }
 
+  type TPerson = {
+    name: string;
+    age: number;
+  };
+
   class Person implements IPerson {
+    constructor(public name: string, public age: number) {}
+  }
+  class Personv2 implements TPerson {
     constructor(public name: string, public age: number) {}
   }
 
@@ -354,6 +391,10 @@ function implementsKeyword() {
 
   const person2 = new Person2("John", 18);
   console.log(person2.name, person2.age);
+  const somethingWithAge: IAge = person2;
+  console.log(somethingWithAge.age);
+  const somethingWithName: IName = person2;
+  console.log(somethingWithName.name);
 }
 
 // Interfaces vs Type Aliases
@@ -436,6 +477,7 @@ function interfacesVsTypeAliases() {
   // const point: Point = { x: 1, y: 2 };
 }
 
+// Q/A
 // Type Narrowing
 // Discriminated Unions
 // Non-null Assertion Operator

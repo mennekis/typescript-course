@@ -1,5 +1,57 @@
 // ********* Lesson 6 *********
 
+// Never type
+function neverType() {
+  // never type is used to indicate that a function never returns
+  // example
+  const throwError = function (message: string) {
+    throw new Error(message);
+  };
+  let result = throwError("error");
+  console.log(result); // never
+
+  const singForewer = function () {
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      console.log("never gonna give you up");
+    }
+  };
+  let song = singForewer();
+  // can also explicitly specify never type
+  let test: never;
+  // test = 123; // Type 'number' is not assignable to type 'never'.ts(2322)
+  // can use this fact to ensure that all cases are covered in switch statement
+  function example2() {
+    type Sqare = {
+      kind: "square";
+      size: number;
+    };
+    type Rectangle = {
+      kind: "rectangle";
+      width: number;
+      height: number;
+    };
+    // type Circle = {
+    //   kind: 'circle';
+    //   radius: number;
+    // };
+    type Shape = Sqare | Rectangle; // | Circle;
+    function area(s: Shape) {
+      if (s.kind === "square") {
+        return s.size * s.size;
+      } else if (s.kind === "rectangle") {
+        return s.width * s.height;
+      }
+      // if include to the union type Circle, then the following code will trigger compile time error
+      let shouldNeverOccur: never = s;
+    }
+    function assertNever(x: never): never {
+      throw new Error("Unexpected object: " + x);
+    }
+  }
+}
+neverType();
+
 // User-Defined Type Guards
 function userDefinedTypeGuards() {
   type TSquare = {
@@ -96,3 +148,79 @@ function functionOverloading() {
   // call signature for the caller of the function - to be used in the function call
 }
 functionOverloading();
+
+// Definite Assignment Assertions
+function definiteAssignmentAssertions() {
+  // definite assignment assertion is a way to tell the compiler that a variable is assigned
+  // even though the compiler cannot detect it
+
+  let userName: string;
+  function fetchUserName() {
+    userName = "John";
+  }
+  fetchUserName();
+  // compiler can not detect that userName is assigned
+  // because fetchUserName is a function that can be synchronous or asynchronous
+  // console.log(userName); // undefined
+  console.log(userName!); // fix here - use definite assignment assertion
+
+  type TUser = {
+    name: string;
+    email: string;
+    age: number;
+    phone?: string;
+  };
+
+  let userObject!: TUser; // exclamantion mark is telling the compiler that userObject is definitely assigned
+  // this is known as definite assignment assertion
+  function buildUser() {
+    userObject = {
+      name: "John",
+      email: "john@mail.com",
+      age: 30,
+    };
+  }
+  buildUser();
+  console.log(userObject.name); // no error since userObject is declared as not null
+
+  // definitive assignment assertion can be used with class properties
+  class Point {
+    x: number;
+    y: number;
+
+    constructor(x: number, y: number) {
+      this.x = x;
+      this.y = y;
+
+      //   this.move(x, y);
+    }
+
+    move(x: number, y: number) {
+      this.x += x;
+      this.y += y;
+    }
+  }
+
+  class Point2 {
+    x!: number;
+    y!: number;
+
+    constructor(x: number, y: number) {
+      this.move(x, y);
+    }
+
+    move(x: number, y: number) {
+      this.x += x;
+      this.y += y;
+    }
+  }
+
+  class User {
+    name!: string;
+    email!: string;
+    age!: number;
+    phone?: string;
+  }
+  // the above class is an exaple where definitive assignment assertion is obused and should be avoided
+}
+definiteAssignmentAssertions();
