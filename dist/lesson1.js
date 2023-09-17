@@ -41,9 +41,7 @@ function example2() {
     let regExp = /ab+c/;
     let set = new Set([1, 2, 3, 3, 2, 1]);
     class Queue {
-        constructor() {
-            this.data = [];
-        }
+        data = [];
         push(item) {
             this.data.push(item);
         }

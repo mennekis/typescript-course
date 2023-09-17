@@ -199,7 +199,7 @@ function exercise28() {
   }
   // TODO: declare interface IMobileWidget which extends IWidgetWithSize and adds space property
   // TODO: add install method to IMobileWidget interface
-  interface IMobileWidget extends IWidgetWithSize {
+  interface IMobileWidget extends IWidgetWithSize, IWidgetPrintable {
     // space property
     // install method
   }
@@ -218,6 +218,7 @@ function exercise28() {
   // TODO: declare interface IWidgetPrintable wich has toString method
   interface IWidgetPrintable {
     // toString method - returns string
+    toString(): string;
   }
 
   // TODO: add IWidgetPrintable to each of the classes above

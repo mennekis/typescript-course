@@ -16,7 +16,7 @@ function exercise35() {
 }
 exercise35();
 
-// use this parameter type annotation to fix the error in this code
+// Use this parameter type annotation to fix the error in this code
 function exercise36() {
   // Note: this object does not have a name property
   // but the toString function expects it to be there, and there is no type check
@@ -41,7 +41,7 @@ function exercise36() {
 }
 exercise36();
 
-// EXERCISE (pause the video and do): fix the following code, use generic constraints
+// Use generic constraints
 function exercise37() {
   interface IPerson {
     firstName: string;
@@ -72,3 +72,45 @@ function exercise37() {
   // console.log(person.sayHello());
 }
 exercise37();
+
+// Use experimental decorators
+function exercise38() {
+  // TODO: implement decorator to print call count of the function
+  function count() {
+    // add params here
+    let callCount = 0;
+    // TODO: implement decorator
+    // TODO: before calling the function increment callCount
+    // TODO: after calling the function print callCount
+  }
+  // TODO: implement decorator to print execution time of the function
+  function time() {
+    // add params here
+    // TODO: before calling the function get current time
+    // TODO: after calling the function get current time
+    // TODO: print the difference between the two times after calling the function
+  }
+
+  class Calculation {
+    // TODO: add both decorators to the following method
+    static add(a: number, b: number) {
+      return a + b;
+    }
+  }
+  // TODO: create instance of Calculation class and call add method
+}
+exercise38();
+
+// Use 2023 decorators (Stage 3 decorator)
+function exercise39() {
+  // TODO: implement decorator to print call count of the function
+  // TODO: implement decorator to print execution time of the function
+  class Calculation {
+    // TODO: add both decorators to the following method
+    static add(a: number, b: number) {
+      return a + b;
+    }
+  }
+  // TODO: create instance of Calculation class and call add method
+}
+exercise39();
