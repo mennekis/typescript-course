@@ -1,18 +1,18 @@
 // Use double assertion
 function exercise35() {
-  // TODO:Create two types: TPoint2D and TPoint3D
-  interface TPoint2D {
-    /* TODO: add definition for x and y props for coordinates */
+  // TODO:Create two types: TUser and TProduct
+  interface TUser {
+    /* TODO: add definition for user name, title and email */
   }
-  interface TPoint3D {
-    /* TODO: add definition for x, y and z props for coordinates */
+  interface TProduct {
+    /* TODO: add definition for product title, price and quantity */
   }
 
-  let point2D: TPoint2D = { x: 1, y: 2 };
-  let point3D: TPoint3D = { x: 1, y: 2, z: 3 };
+  let user: TUser = {};
+  let product: TProduct = {};
 
   // TODO: fix the error by adding double assertion
-  // point3D = point2D;
+  product = user;
 }
 exercise35();
 

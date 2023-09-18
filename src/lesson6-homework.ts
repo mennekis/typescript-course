@@ -149,7 +149,13 @@ function exercise34() {
   function calculateAverageGrade(studentName: string): number | string {
     const studentFound = false;
     if (studentFound) {
-      // TODO: calculate average grade
+      // if (!cachedResults[studentName]) {
+      //   // TODO: calculate average grade
+      //   const calculationResult = 0;
+      //   cachedResults[studentName] = calculationResult;
+      // }
+
+      // return cachedResults[studentName];
       return 0;
     } else {
       return "Student not found";

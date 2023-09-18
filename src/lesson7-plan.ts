@@ -361,6 +361,39 @@ genericConstraints();
 //   const v = new Vehicle();
 //   v.move(100);
 
+// // // Decorators in React
+// // // decorator/navbar.js
+// // import React, {Component} from "react";
+// // export default function navBar() {
+// //     return function(Child) {
+// //       return class extends Component {
+// //          constructor(props) {
+// //            super(props);
+// //          }
+// //          render() {
+// //            return (
+// //              <div>
+// //                <h2>Hello this is the navigation bar</h2>
+// //                <Child />
+// //              </div>
+// //            )
+// //         }
+// //      }
+// //  }
+//
+// // // anotherComponent.js
+// // import React, {Component} from "react";
+// // import navBar from "./decorator/navBar";
+// // @navBar()
+// // class AnotherComponent extends Component {
+// //   render() {
+// //    return(
+// //      <div>
+// //        <p>Hello World</p>
+// //       </div>
+// //    )}
+// // }
+
 //   // more resources
 //   // https://dev.to/danywalls/decorators-in-typescript-with-example-part-1-m0f
 //   // https://dev.to/danywalls/using-property-decorators-in-typescript-with-a-real-example-44e
