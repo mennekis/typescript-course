@@ -69,6 +69,7 @@ function thisFunctionParameter() {
   // OK
   toStringGood.call(data); // Joe, 30, Developer
   data.toString(); // Joe, 30, Developer
+  " " + data; // Joe, 30, Developer
 
   const badData = {
     name: "Joe",
@@ -402,117 +403,102 @@ genericConstraints();
 
 // typescript5 stage3 decorators
 function staget3Decorators() {
-  // 1. class decorators
-  @printDecoratorData
-  class Manager {
-    task: string = "Simple task";
-    project: string = "Simple project";
-    constructor() {
-      console.log("Initializing the Manager class");
-    }
-  }
-  // const manager = new Manager ();
-  // console. log (manager)
-  function printDecoratorData(value: Function, context: ClassDecoratorContext) {
-    console.log("value: ", value);
-    console.log(context);
-    console.log(context);
-    context.addInitializer(() => {
-      console.log("Initialized class " + context.name);
-    });
-  }
-
-  class Person {
-    name: string;
-    constructor(name: string) {
-      this.name = name;
-    }
-
-    greet() {
-      console.log(`Hello, my name is ${this.name}.`);
-    }
-    // greet() {
-    //   console.log("LOG: Entering method.");
-    //   console.log(`Hello, my name is ${this.name}.`);
-    //   console.log("LOG: Exiting method.");
-    // }
-  }
-
-  const p = new Person("Ron");
-  p.greet();
-
-  function loggedMethod(originalMethod: Function, _context: any) {
-    function replacementMethod(this: any, ...args: any[]) {
-      console.log("LOG: Entering method.");
-      const result = originalMethod.call(this, ...args);
-      console.log("LOG: Exiting method.");
-      return result;
-    }
-
-    return replacementMethod;
-  }
-
-  class Person2 {
-    name: string;
-    constructor(name: string) {
-      this.name = name;
-    }
-
-    @loggedMethod
-    greet() {
-      console.log(`Hello, my name is ${this.name}.`);
-    }
-  }
-
-  const p2 = new Person2("Ron");
-  p2.greet();
-
-  function bound(originalMethod: any, context: ClassMethodDecoratorContext) {
-    const methodName = context.name;
-    if (context.private) {
-      throw new Error(
-        `'bound' cannot decorate private properties like ${
-          methodName as string
-        }.`
-      );
-    }
-    context.addInitializer(function () {
-      // this[methodName] = this[methodName].bind(this); // this is unknown
-      const thisAsAny = this as any;
-      thisAsAny[methodName] = thisAsAny[methodName].bind(this);
-    });
-  }
-
-  class Person3 {
-    name: string;
-    constructor(name: string) {
-      this.name = name;
-    }
-
-    @bound
-    @loggedMethod
-    greet() {
-      console.log(`Hello!!! My name is ${this.name}.`);
-    }
-  }
-
-  // same as
-  class Person4 {
-    name: string;
-    constructor(name: string) {
-      this.name = name;
-    }
-
-    greet = () => {
-      console.log(`Hello, my name is ${this.name}.`);
-    };
-  }
-  // This code is written to ensure that this isn’t re-bound if greet is called as a stand-alone function or passed as a callback.
-
-  const p3 = new Person3("Ron");
-  const greet = p3.greet;
-
-  // Works!
-  greet();
+  // // 1. class decorators
+  // @printDecoratorData
+  // class Manager {
+  //   task: string = "Simple task";
+  //   project: string = "Simple project";
+  //   constructor() {
+  //     console.log("Initializing the Manager class");
+  //   }
+  // }
+  // // const manager = new Manager ();
+  // // console. log (manager)
+  // function printDecoratorData(value: Function, context: ClassDecoratorContext) {
+  //   console.log("value: ", value);
+  //   console.log(context);
+  //   console.log(context);
+  //   context.addInitializer(() => {
+  //     console.log("Initialized class " + context.name);
+  //   });
+  // }
+  // class Person {
+  //   name: string;
+  //   constructor(name: string) {
+  //     this.name = name;
+  //   }
+  //   greet() {
+  //     console.log(`Hello, my name is ${this.name}.`);
+  //   }
+  //   // greet() {
+  //   //   console.log("LOG: Entering method.");
+  //   //   console.log(`Hello, my name is ${this.name}.`);
+  //   //   console.log("LOG: Exiting method.");
+  //   // }
+  // }
+  // const p = new Person("Ron");
+  // p.greet();
+  // function loggedMethod(originalMethod: Function, _context: any) {
+  //   function replacementMethod(this: any, ...args: any[]) {
+  //     console.log("LOG: Entering method.");
+  //     const result = originalMethod.call(this, ...args);
+  //     console.log("LOG: Exiting method.");
+  //     return result;
+  //   }
+  //   return replacementMethod;
+  // }
+  // class Person2 {
+  //   name: string;
+  //   constructor(name: string) {
+  //     this.name = name;
+  //   }
+  //   @loggedMethod
+  //   greet() {
+  //     console.log(`Hello, my name is ${this.name}.`);
+  //   }
+  // }
+  // const p2 = new Person2("Ron");
+  // p2.greet();
+  // function bound(originalMethod: any, context: ClassMethodDecoratorContext) {
+  //   const methodName = context.name;
+  //   if (context.private) {
+  //     throw new Error(
+  //       `'bound' cannot decorate private properties like ${
+  //         methodName as string
+  //       }.`
+  //     );
+  //   }
+  //   context.addInitializer(function () {
+  //     // this[methodName] = this[methodName].bind(this); // this is unknown
+  //     const thisAsAny = this as any;
+  //     thisAsAny[methodName] = thisAsAny[methodName].bind(this);
+  //   });
+  // }
+  // class Person3 {
+  //   name: string;
+  //   constructor(name: string) {
+  //     this.name = name;
+  //   }
+  //   @bound
+  //   @loggedMethod
+  //   greet() {
+  //     console.log(`Hello!!! My name is ${this.name}.`);
+  //   }
+  // }
+  // // same as
+  // class Person4 {
+  //   name: string;
+  //   constructor(name: string) {
+  //     this.name = name;
+  //   }
+  //   greet = () => {
+  //     console.log(`Hello, my name is ${this.name}.`);
+  //   };
+  // }
+  // // This code is written to ensure that this isn’t re-bound if greet is called as a stand-alone function or passed as a callback.
+  // const p3 = new Person3("Ron");
+  // const greet = p3.greet;
+  // // Works!
+  // greet();
 }
 staget3Decorators();
