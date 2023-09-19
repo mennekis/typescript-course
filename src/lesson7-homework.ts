@@ -35,10 +35,10 @@ function exercise36() {
     // return `${this.name}, ${this.age}, ${this.role}`;
   }
   data.toString = toString;
-  // TODO: observe the error
-  // TODO: add required properties to the data object, fixing the error
-  console.log(data.toString());
+  // TODO: run the code and observe the error
   console.log(data + "");
+  console.log(data.toString());
+  // TODO: add required properties to the data object, fixing the error
 }
 exercise36();
 
