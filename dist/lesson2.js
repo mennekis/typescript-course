@@ -1,20 +1,7 @@
 "use strict";
 // Array, tupples
-let a = [];
-a = [1, 2, 3];
-function getOddNumbers(arr) {
-    const result = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 !== 0)
-            result.push(arr[i]);
-    }
-    return result;
-}
-let point = [1, 2];
-point = [2, 3];
-let point3D = [1, 2, 3];
-let record = ["Hello", "Привіт"];
-record = ["Hello", "Привіт"];
+// let a: number[] = [];
+// a = [1, 2, 3];
 let point2 = { x: 1, y: 2 };
 let point3 = { x: 3, y: 2 };
 // const declarations

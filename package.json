@@ -1,7 +1,7 @@
 {
   "name": "typescript-course",
   "version": "1.0.0",
-  "description": "",
+  "description": "Typescript course materials",
   "main": "index.js",
   "scripts": {
     "watch": "npx tsc --watch"

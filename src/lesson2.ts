@@ -1,21 +1,21 @@
 // Array, tupples
-let a: number[] = [];
-a = [1, 2, 3];
+// let a: number[] = [];
+// a = [1, 2, 3];
 
-function getOddNumbers(arr: number[]): number[] {
-  const result: number[] = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] % 2 !== 0) result.push(arr[i]);
-  }
-  return result;
-}
-type TPoint = [number, number];
-let point: TPoint = [1, 2];
-point = [2, 3];
-let point3D: [number, number, number] = [1, 2, 3];
+// function getOddNumbers(arr: number[]): number[] {
+//   const result: number[] = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] % 2 !== 0) result.push(arr[i]);
+//   }
+//   return result;
+// }
+// type TPoint = [number, number];
+// let point: TPoint = [1, 2];
+// point = [2, 3];
+// let point3D: [number, number, number] = [1, 2, 3];
 
-let record: [string, string] = ["Hello", "Привіт"];
-record = ["Hello", "Привіт"];
+// let record: [string, string] = ["Hello", "Привіт"];
+// record = ["Hello", "Привіт"];
 
 // point = point3D;
 
