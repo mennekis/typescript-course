@@ -1,4 +1,3 @@
-import { chownSync } from "fs";
 
 // Create and use a type guard
 function exercise29() {
