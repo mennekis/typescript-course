@@ -62,6 +62,17 @@ exercise36();
 
 // Use generic constraints
 function exercise37() {
+  interface IPerson {
+    firstName: string;
+    lastName: string;
+  }
+
+  // TODO: add generic constraints to enforce type checking, add return type annotation
+  function addGreeting<T>(obj: T) {
+    // TODO: implement the method sayHello that returns a greeting string
+    // TODO: use firstName lastName props to generate a greeting string, for example: "Hello Joe Smith"
+    // TODO: make sure the obj is not modified, and new object is returned
+  }
    interface IPerson {
       firstName: string;
       lastName: string;
