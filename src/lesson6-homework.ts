@@ -1,4 +1,3 @@
-
 // Create and use a type guard
 function exercise29() {
    type TWidget = {
@@ -67,14 +66,15 @@ function exercise31() {
    ) {}
 
    // +TODO: add call signatures here. Add overrides for optional email param
-   type TSaveUserCallback = (
-      firstName: string,
-      lastName: string,
-      email?: string
-   ) => void;
+   type TSaveUserCallback = {
+      (firstName: string, lastName: string): void;
+      (firstName: string, lastName: string, email: string): void;
+   };
+
    // +TODO: add call signatures here. Add overrides for optional email param
    interface ISaveUserCallback {
-      (firstName: string, lastName: string, email?: string): void;
+      (firstName: string, lastName: string): void;
+      (firstName: string, lastName: string, email: string): void;
    }
 
    function createForm(onSubmit: TSaveUserCallback) {
@@ -123,9 +123,6 @@ function exercise32() {
    }
    // +TODO: inherit from Animal and implement makeSound method
    class Dog extends Animal {
-      constructor(name: string) {
-         super(name);
-      }
       makeSound(): void {
          console.log(" Gaf motherFCK!!");
       }
