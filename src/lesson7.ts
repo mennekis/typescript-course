@@ -407,7 +407,7 @@ function lesson7() {
   // typescript5 stage3 decorators
   function staget3Decorators() {
     // 1. class decorators
-    @printDecoratorData
+    //@printDecoratorData
     class Manager {
       task: string = "Simple task";
       project: string = "Simple project";
@@ -466,7 +466,7 @@ function lesson7() {
       constructor(name: string) {
         this.name = name;
       }
-      @loggedMethod
+      //@loggedMethod
       greet() {
         console.log(`Hello, my name is ${this.name}.`);
       }
@@ -503,8 +503,8 @@ function lesson7() {
         this.name = name;
       }
 
-      @bound
-      @loggedMethod
+      //@bound
+      //@loggedMethod
       greet() {
         console.log(`!!!Hello!!! My name is ${this?.name}.`);
       }
