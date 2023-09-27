@@ -51,7 +51,7 @@ function exercise40() {
     console.log(fetchResult.length);
 
     userNames.forEach((name) => {
-      // TOOD: explain why type narrowing does not work here and fix the error (and remove any type annotations)
+      // TOOD: explain why type narrowing does not work here and fix the error (and remove `any` type annotations)
       let result = fetchResult.find((obj: any) => obj.name === name);
 
       if (result) {
@@ -138,8 +138,8 @@ function exercise41() {
 
   // TODO: create function that returns coordinates of the user copany address,
   // TODO: set the return type of that function using typeof operator
-  function getCoordinates(): typeof user.company.address.coordinates {
-    return user.company.address.coordinates;
+  function getCoordinates(): any {
+    return null;
   }
   console.log(getCoordinates());
 }
@@ -167,7 +167,7 @@ function exercise42() {
           title: "user photo 1",
         },
         {
-          utl: "https://i.dummyjson.com/data/products/1/2.jpg",
+          url: "https://i.dummyjson.com/data/products/1/2.jpg",
           title: "user photo 2",
         },
       ],
@@ -192,14 +192,14 @@ function exercise42() {
   type TProduct = {
     id: number;
     title: string;
-    // TOOD: add remaining missing properties
+    // TOOD: add remaining missing properties types, list each of them explicitly
   };
 
   // TODO: create a type TCoodinates that represents coordinates, using lookup type
   //  (product->warehouse->address->coordinates)
   type TCoordinates = {};
 
-  // TODO: fix/add type annotation for the function (remove any type annotation)
+  // TODO: fix/add type annotation for the function (remove `any` type annotation)
   function printProductLocationCoordinates(coordinates: TCoordinates | any) {
     // NOTE: this could be using google map api to display the location on the map, but for now just console.log
     console.log(coordinates.lat);

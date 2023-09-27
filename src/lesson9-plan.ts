@@ -10,7 +10,7 @@ function mappedTypes() {
     x: number;
     y: number;
     z: number;
-    // name: string;
+    name: string;
   };
 
   type TReadOnlyPoint = {
@@ -41,14 +41,21 @@ function mappedTypes() {
 
   type TReadOnlyPointV3 = {
     readonly [K in keyof Point]: Point[K];
-  };
+  } & { debugValue: string };
+  // const x:TReadOnlyPointV3 = {
+  //   x: 1,
+  //   y: 2,
+  //   z: 3,
+  //   name: "point",
+  //   debugValue: "debug",
+  // };
 
   /**
    * Make all properties in T readonly
    */
-  type Readonly<T> = {
-    readonly [P in keyof T]: T[P];
-  };
+  // type Readonly<T> = {
+  //   readonly [K in keyof T]: T[K];
+  // };
 
   type TReadOnlyPointV4 = Readonly<Point>;
 
@@ -57,10 +64,26 @@ function mappedTypes() {
 
 // Mappping types modifiers
 function mappedTypesModifiers() {
+  type TCopy<T> = {
+    [P in keyof T]: T[P];
+  };
+
+  type TPoint3D = {
+    x: number;
+    y: number;
+    z: number;
+    name: string;
+  };
+
+  type TCopyPoint = TCopy<TPoint3D>;
+
   /**
    * Make all properties in T optional
    */
   type Partial<T> = {
+    [P in keyof T]?: T[P];
+  };
+  type Partial2<T> = {
     [P in keyof T]+?: T[P];
   };
 
@@ -120,6 +143,16 @@ function mappedTypesModifiers() {
   });
   // state.updateState({ x: 10 }); // error
 
+  // class State<T> {
+  //   constructor(private state: T) {}
+  //   updateState(newState: Partial<T>) {
+  //     this.state = { ...this.state, ...newState };
+  //   }
+  //   getStateByKey(key: keyof T) {
+  //     return this.state[key];
+  //   }
+  // }
+
   /**
    * From T, pick a set of properties whose keys are in the union K
    */
@@ -141,8 +174,7 @@ function templateLiteralType() {
   // const greeting3: Greeting = "Hello123 John";
 
   // example 1
-  type CssValue = number | `${number}px` | `${number}em` | `${number}%`;
-  const width: CssValue = 100;
+  type CssValue = `${number}px` | `${number}em` | `${number}%`;
   const width2: CssValue = "100px";
   const width3: CssValue = "100em";
   // example 2
@@ -167,10 +199,10 @@ function fixAutocompleteProblemForLiteralUnionTypes() {
   function drawRectangle(color: Color) {
     console.log(color);
   }
-  drawRectangle("redd"); // no autocomplete
+  drawRectangle("blue"); // no autocomplete
   // string includes all possible strings, so Color is a string type alias
   // if to remove the string - nice autocomplete, but we lose the ability to pass any string
-  type Color2 = "red" | "green" | "blue" | (string & {});
+  type Color2 = ("red" | "green" | "blue") | (string & {});
   function drawRectangle2(color: Color2) {
     console.log(color);
   }
@@ -185,7 +217,11 @@ function satisfiesConstraint() {
 
   type Color = ColorString | ColorRGB;
 
-  type Theme = Record<string, Color>;
+  type Theme = {
+    [x: string]: Color;
+  };
+  // same as
+  // type Theme = Record<string, Color>;
 
   const theme: Theme = {
     primary: "green",
@@ -193,7 +229,7 @@ function satisfiesConstraint() {
     danger: "red",
   };
 
-  const [r, g, b] = theme.secondary123; // no error checking
+  const [r, g, b] = theme.secondary555; // no error checking
 
   const theme2 = {
     primary: "green",
@@ -206,3 +242,29 @@ function satisfiesConstraint() {
   const _temp: Theme = theme2;
 }
 satisfiesConstraint();
+
+// Utility Property key type
+function propertyKeyType() {
+  // only string, number and symbol can be used as property keys
+  const str = "str";
+  const num = 1;
+  const sym = Symbol();
+
+  const obj = {
+    [str]: 1,
+    [num]: 2,
+    [sym]: 3,
+  };
+
+  const objAsKe = {};
+
+  const obj2 = {
+    // [objAsKe]: 1, // inva
+  };
+
+  // type PropertyKey = string | number | symbol;
+  const str2: PropertyKey = "str";
+  const num2: PropertyKey = 1;
+  const sym2: PropertyKey = Symbol();
+  // const obj3: PropertyKey = {}; // invalid
+}

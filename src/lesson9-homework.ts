@@ -119,7 +119,7 @@ function exerciseExtra2() {
    * ...
    */
 
-  // TODO: convert fizzBuzz to generate a string instead of printing to console
+  // TODO: convert fizzBuzz function to return a string output instead of printing to console
   function fizzBuzzToString() {
     // TODO: add your code here
   }
