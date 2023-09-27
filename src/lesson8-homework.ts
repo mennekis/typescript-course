@@ -51,10 +51,8 @@ function exercise40() {
       console.log(fetchResult.length);
 
       userNames.forEach((name) => {
-         // TOOD: explain why type narrowing does not work here and fix the error (and remove any type annotations)
-         let result = fetchResult!.find(
-            (obj: GroupDocument | null) => obj?.name === name
-         );
+         // TOOD: explain why type narrowing does not work here and fix the error (and remove `any` type annotations)
+         let result = fetchResult!.find((obj: any) => obj.name === name);
 
          if (result) {
             console.log(result.data);
@@ -62,6 +60,7 @@ function exercise40() {
       });
    }
 }
+
 exercise40();
 
 // Use typeof operator
@@ -153,11 +152,18 @@ function exercise41() {
       return user.company.address.coordinates;
    }
    console.log(getCoordinates());
+   // TODO: create function that returns coordinates of the user copany address,
+   // TODO: set the return type of that function using typeof operator
+
+   console.log(getCoordinates());
 }
 exercise41();
 
 // Use lookup types
 function exercise42() {
+   // imagine you have a list of products received from the API
+   // and you need to display the location coordinates of every product's warehouse
+
    // imagine you have a list of products received from the API
    // and you need to display the location coordinates of every product's warehouse
    const products = [
