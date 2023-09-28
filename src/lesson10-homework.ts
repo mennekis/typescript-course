@@ -1,7 +1,7 @@
 // string manipulation utilities type
 function exercise52() {
   // TODO: write a utility type that for given object type T
-  // will create a new type with all properties optional, plus methods to get and set properties
+  // will create a new type with all properties plus methods to get and set properties
   // plus methods to validate earch of the property
   type TObjectWitName = {
     name: string;
