@@ -1,15 +1,90 @@
 // ********* Lesson 10 *********
 
 // Utility This type
-function utilityThisType() {}
+function utilityThisType() {
+  // ThisType is a built-in utility type that allows you to specify the type of this inside an object literal, or inside a class declaration.
+
+  type Math = {
+    double(): void;
+    half(): void;
+    pow(n: number): void;
+  };
+
+  const math: Math = {
+    double(this: { value: number }) {
+      this.value *= 2;
+    },
+    half(this: { value: number }) {
+      this.value *= 0.5;
+    },
+    pow(this: { value: number }, n: number) {
+      this.value **= n;
+    },
+  };
+
+  const obj = {
+    value: 2,
+    ...math,
+  };
+
+  obj.double();
+
+  const math2: Math & ThisType<{ value: number }> = {
+    double() {
+      this.value *= 2;
+    },
+    half() {
+      this.value *= 0.5;
+    },
+    pow(n: number) {
+      this.value **= n;
+    },
+  };
+
+  const obj2 = {
+    value: 2,
+    ...math2,
+  };
+
+  obj2.double();
+
+  // example 2
+  type TStateDescriptin<D, M> = {
+    data: D;
+    methods: M & ThisType<D & M>;
+  };
+
+  function createState<D, M>(desc: TStateDescriptin<D, M>): D & M {
+    return {
+      ...desc.data,
+      ...desc.methods,
+    };
+  }
+
+  const state = createState({
+    data: {
+      name: "John",
+      age: 20,
+    },
+    methods: {
+      getBirthYear() {
+        return new Date().getFullYear() - this.age;
+      },
+    },
+  });
+
+  console.log("birthYear ", state.getBirthYear());
+  console.log("name ", state.age);
+  console.log("name ", state.name);
+}
 utilityThisType();
 
 // String Manipulation Utilities
 function stringManipulationUtilities() {
-  // Capitalize
-  // Uncapitalize
   // Uppercase
   // Lowercase
+  // Capitalize
+  // Uncapitalize
 
   /**
    * Convert string literal type to uppercase
@@ -33,16 +108,48 @@ function stringManipulationUtilities() {
 
   // examples
   type Sizes = "small" | "medium" | "large";
+  type UpperCaseSizes = Uppercase<Sizes>;
+  type LowerCaseSizes = Lowercase<UpperCaseSizes>;
+
   type Colors = "red" | "green" | "blue";
-  type WidgetTypes = `${Capitalize<Sizes>}-${Colors}`;
-  const a: WidgetTypes = "Small-red";
+  type WidgetTypes = `${Uppercase<Sizes>}-${Colors}`;
+  const a: WidgetTypes = "SMALL-red";
+
+  // used cases for string manipulation utilities
+  // gettter
+  type Getters<T> = {
+    [K in keyof T & string as `get${Capitalize<K>}`]: () => T[K];
+  };
+  // T & string - will non-string keys
+  // as - will rename keys
+
+  type TPoint = {
+    x: number;
+    y: number;
+    z: number;
+    name: string;
+  };
+  type TPointGetters = Getters<TPoint>;
+  const pointGetter: TPoint & TPointGetters = {
+    x: 1,
+    y: 2,
+    z: 3,
+    name: "point",
+    getX() {
+      return this.x;
+    },
+    getY() {
+      return this.y;
+    },
+    getZ() {
+      return this.z;
+    },
+    getName() {
+      return this.name;
+    },
+  };
 }
 stringManipulationUtilities();
-
-// Mapped Types as Clauses
-function mappedTypesAsClauses() {
-  //
-}
 
 // Awaited<T> Utility
 async function awaitedUtilityType() {
@@ -87,6 +194,8 @@ async function awaitedUtilityType() {
       ? Awaited<V> // recursively unwrap the value
       : never // the argument to `then` was not callable
     : T; // non-object or non-thenable
+
+  // third.then((thirdResult) => console.log(thirdResult));
 }
 awaitedUtilityType();
 
@@ -112,21 +221,22 @@ function utilityTypesDeepDive() {
   };
 
   // Exclude - exclude from T all union pargs that are assignable to U
-  type Exclude<T, U> = T extends U ? never : T;
+  //   type Exclude<T, U> = T extends U ? never : T;
   type TPoint2d3Keys = Exclude<keyof TPoint, "z" | "name">;
 
   // Extract
-  // type Extract<T, U> = T extends U ? T : never;
+  type Extract<T, U> = T extends U ? T : never;
   type TPoint2d4Keys = Extract<keyof TPoint, "x" | "y">;
+  type TIntersection = Extract<"q" | "w" | "x" | "a", "x" | "y" | "a" | "b">;
 
   // Omit
-  type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+  //   type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
   type TPoint2d5 = Omit<TPoint, "z" | "name">;
 
   // NonNullable
   type TPointNullable = {
-    x: number | null;
-    y: number | null;
+    x?: number | null;
+    y?: number | null;
     z: number | null;
     name: string | null;
   };
@@ -158,5 +268,40 @@ function utilityTypesDeepDive() {
   // type PropertyKey = string | number | symbol;
   type PropertyKey = keyof any;
   // type Pro
+
+  type PParam = Parameters<typeof sum>;
+  type TPointTupple = [x: number, y: number]; // [number, number]
+  const pointTupple: PParam = [1, 2];
+  const point: TPointTupple = pointTupple;
+  type TDIct = [word: string, description: number];
 }
 utilityTypesDeepDive();
+
+// Enums
+function enums() {
+  enum FileAccess {
+    None, // 000
+    Read = 1 << 1, // 001
+    Write = 1 << 2, // 010
+    Execute = 1 << 3, // 100
+    ReadWrite = Read | Write, // 011
+  }
+
+  function checkAccess(access: number) {
+    if (access & FileAccess.Read) {
+      console.log("Read");
+    }
+    if (access & FileAccess.Write) {
+      console.log("Write");
+    }
+    if (access & FileAccess.Execute) {
+      console.log("Execute");
+    }
+  }
+  checkAccess(1);
+  checkAccess(2);
+  checkAccess(3);
+  checkAccess(4);
+  checkAccess(5);
+}
+enums();
