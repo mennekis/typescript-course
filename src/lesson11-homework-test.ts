@@ -230,7 +230,7 @@ describe("Users class", () => {
     });
   });
 
-  describe("getMediumWomenAge method", () => {
+  describe("getAverageWomenAge method", () => {
     // - Написати функцію що повератє середній вік всіх жінок ("gender": "female")
 
     xit("should be defined", () => {
