@@ -15,6 +15,7 @@
     * updateUsersAge <- важливо тут потрібно пере-створити список користувачів так щоб не міняти існуючий об'єкт data - він зафрізаний, і при зміні властивостей буде падати помилка 
     * getUsersFromUkraine
     * getStatePostalCodes
+    * getAverageWomenAge
     * getMostCommonWoomanHairColor
     * getMostCommonManBlodType
 1. поправити задісейблені юніт-тести методів
@@ -22,6 +23,7 @@
     * getUsersFromUkraine
     * getStatePostalCodes
 1. написати юніт-тести до методів
+    * getAverageWomenAge
     * getMostCommonWoomanHairColor
     * getMostCommonManBlodType
 1. запустити юніт-тести і переконатися що вони проходять
