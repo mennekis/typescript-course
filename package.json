@@ -13,6 +13,11 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20.5.9"
+    "@babel/preset-typescript": "^7.23.0",
+    "@types/chai": "^4.3.6",
+    "@types/jest": "^29.5.5",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "^20.5.9",
+    "chai": "^4.3.10"
   }
 }
